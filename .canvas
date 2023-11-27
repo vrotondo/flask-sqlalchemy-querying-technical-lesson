@@ -1,0 +1,6 @@
+---
+:lessons:
+- :id: 300460
+  :course_id: 7602
+  :canvas_url: https://learning.flatironschool.com/courses/7602/pages/querying-a-database-in-a-flask-application-code-along
+  :type: page
