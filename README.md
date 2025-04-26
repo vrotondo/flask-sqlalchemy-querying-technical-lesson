@@ -1,17 +1,28 @@
-# Querying a Database in a Flask Application : Code-Along
+# Technical Lesson: Querying a Database in a Flask Application
 
-## Learning Goals
+You’ve built the structure of your Flask app, and your database is seeded 
+with sample data — but how do you actually make that data accessible to users?
 
-- Implement a Flask application to query the database
+## Scenario
 
----
+At your first junior developer job at Pawfect Adoption Center, the team has 
+a growing database of adoptable pets. They need a way to query that database 
+and display information dynamically based on user interactions - like searching 
+for pets by ID, by species, or eventually by name or availability.
 
-## Introduction
+In this lesson, you'll learn how to:
+* Query the database directly through Flask-SQLAlchemy.
+* Serve that data through Flask views as HTML responses.
+* Handle situations where a user searches for a record that doesn’t exist.
 
-The moment we've all been waiting for has arrived! Let's use our newly-seeded
-database to put pet information onto the internet!
+This is a major milestone - connecting your backend database logic to your frontend user interface!
 
----
+## Tools & Resources
+
+- [GitHub Repo](http://github.com/learn-co-curriculum/flask-sqlalchemy-querying-technical-lesson)
+- [Quickstart - Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/)
+- [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/)
+- [Flask Extensions, Plug-ins, and Related Libraries - Full Stack Python](https://www.fullstackpython.com/flask-extensions-plug-ins-related-libraries.html)
 
 ## Setup
 
@@ -60,6 +71,48 @@ The commands `flask db init` and `flask db migrate` have already been run, so
 the `server` directory contains the `migrations` directory, and the directory
 `server/migrations/versions` contains an initial migration script.
 
+## Instructions
+
+### Task 1: Define the Problem
+
+Having a populated database is not enough — web applications must retrieve 
+and present specific pieces of information based on user requests. Whether 
+a user wants to see a particular pet’s profile, all dogs available for adoption, 
+or the total number of turtles, your application needs to query the database 
+efficiently and serve the results back over the web.
+
+Manually connecting the database to a web route or hardcoding information is 
+not scalable. You need dynamic querying — flexible, efficient, and safe.
+
+Your Challenge is to use Flask-SQLAlchemy’s query capabilities to:
+* Retrieve individual records or lists of records based on URL parameters.
+* Handle cases where no matching data is found.
+* Dynamically construct responses using the results of your queries.
+
+This pattern forms the foundation of how real-world web applications handle 
+user-generated requests every day.
+
+### Task 2: Determine the Design
+
+The technical design for querying and displaying database information will include:
+
+* Using SQLAlchemy ORM Queries:
+    * Query your models using .query, .filter(), .filter_by(), .all(), and .first() methods to retrieve records based on user-supplied parameters.
+* Building Views Dynamically:
+    * In Flask, views (functions decorated with @app.route) will accept dynamic parameters like id or species, query the database based on those parameters, and return an HTML response containing the relevant data.
+* Handling Missing Data:
+    * When a query returns no results, serve a customized 404 error page or message rather than letting the app crash or show a server error.
+* Using Flask's make_response():
+    * Construct customized HTTP responses, setting appropriate status codes (e.g., 200 for success, 404 for not found).
+* Scaling with Query Results:
+    * Dynamically loop over query results (like a list of pets) to generate multiple parts of a response when needed (such as listing all cats).
+
+This ensures the application can serve real-time data, handle edge cases safely, and scale gracefully as more user requests and different types of queries are introduced.
+
+### Task 3: Develop, Test, and Refine the Code
+
+#### Step 1: Initialize Database
+
 Run the following command to create the `instance` directory with the database
 and initialize the database from the existing migration script:
 
@@ -100,6 +153,8 @@ $ flask shell
 
 ![new pet table](https://curriculum-content.s3.amazonaws.com/7159/python-p4-v2-flask-sqlalchemy/pet_table.png)
 
+#### Step 2: Seed the Database
+
 Let's seed the table with sample data. Type the following within the `server`
 directory:
 
@@ -116,7 +171,7 @@ $ flask shell
 >>>
 ```
 
-## Serving Database Records in Flask Applications
+## Step 3: Serve Database Records in Endpoints
 
 Open `server/app.py` and modify it to add the `index()` view as shown below:
 
@@ -182,7 +237,7 @@ browser:
 
 ![h1 text "Welcome to the pet directory!" in Google Chrome](https://curriculum-content.s3.amazonaws.com/7159/python-p4-v2-flask-sqlalchemy/index_welcome_html.png)
 
-### Creating Our Views
+### Step 4: Create Views
 
 Let's start working on displaying data in our Flask application.
 
@@ -275,20 +330,10 @@ Let's test this new route (your result will differ). Navigate to
 
 ![query by species](https://curriculum-content.s3.amazonaws.com/7159/python-p4-v2-flask-sqlalchemy/species.png)
 
-## Conclusion
 
-You should now be able to use Flask-SQLAlchemy and Flask-Migrate to send and
-receive information between databases, web servers, and clients far away. These
-powerful tools require practice to get used to- our next lesson will give you
-the chance to write a full-stack Flask application on your own.
+#### Step 5: Verify your Code
 
-If your application for this lesson still isn't working, don't worry! Refer to
-the solution code below and meet with your peers, instructors, and coaches to
-iron out any remaining wrinkles.
-
----
-
-## Solution Code
+Solution Code:
 
 ```py
 # server/app.py
@@ -348,10 +393,55 @@ if __name__ == '__main__':
     app.run(port=5555, debug=True)
 ```
 
----
+#### Step 6: Commit, Push, and Merge to GitHub
 
-## Resources
+* Commit and push your code:
 
-- [Quickstart - Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/)
-- [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/)
-- [Flask Extensions, Plug-ins, and Related Libraries - Full Stack Python](https://www.fullstackpython.com/flask-extensions-plug-ins-related-libraries.html)
+```bash
+git add .
+git commit -m "create pets table with some started data"
+git push
+```
+
+* If you created a separate feature branch, remember to open a PR on main and merge.
+
+### Task 4: Document and Maintain
+
+Best Practice documentation steps:
+* Add comments to the code to explain purpose and logic, clarifying intent and functionality of your code to other developers.
+* Update README text to reflect the functionality of the application following https://makeareadme.com. 
+  * Add screenshot of completed work included in Markdown in README.
+* Delete any stale branches on GitHub
+* Remove unnecessary/commented out code
+* If needed, update git ignore to remove sensitive data
+
+## Summary
+
+You should now be able to use Flask-SQLAlchemy and Flask-Migrate to send and
+receive information between databases, web servers, and clients far away. These
+powerful tools require practice to get used to - our next lesson will give you
+the chance to write a full-stack Flask application on your own.
+
+If your application for this lesson still isn't working, don't worry! Refer to
+the solution code below and meet with your peers, instructors, and coaches to
+iron out any remaining wrinkles.
+
+## Considerations
+
+When designing queries in a Flask-SQLAlchemy application, consider the following:
+
+* Efficiency Matters:
+    * Avoid retrieving more data than necessary — for example, use `.first()` when you only need one record instead of .all().
+* Security and Validation:
+    * Be cautious when accepting parameters from URLs — always validate types (e.g., `<int:id>`) and handle missing data gracefully with 404 responses.
+* Performance Scaling:
+    * As your app grows, complex queries (joins, filters, ordering) will need to be optimized. Start building good habits now by being selective and thoughtful in your queries.
+* User Experience:
+    * Clear, friendly messages when a resource isn’t found (404s) help users trust your app more than generic or broken error pages.
+* Data Consistency:
+    * When querying based on strings like species names, remember that slight differences (capitalization, pluralization) could impact query results. You may eventually need case-insensitive searches or validations.
+* Future API Design:
+    * While you're returning simple HTML strings now, the same querying patterns form the basis for building REST APIs later — responses will be JSON instead of HTML.
+
+Mastering database queries within Flask views is the critical bridge between having raw data and building dynamic, interactive, full-stack applications.
+
