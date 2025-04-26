@@ -168,7 +168,7 @@ $ flask shell
 >>>
 ```
 
-## Step 3: Serve Database Records in Endpoints
+#### Step 3: Serve Database Records in Endpoints
 
 Open `server/app.py` and modify it to add the `index()` view as shown below:
 
@@ -234,7 +234,7 @@ browser:
 
 ![h1 text "Welcome to the pet directory!" in Google Chrome](/assets/index_welcome_html.png)
 
-### Step 4: Create Views
+#### Step 4: Create Views
 
 Let's start working on displaying data in our Flask application.
 
