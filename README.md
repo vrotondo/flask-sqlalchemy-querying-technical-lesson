@@ -148,7 +148,7 @@ $ flask shell
 >>>
 ```
 
-![new pet table](https://curriculum-content.s3.amazonaws.com/7159/python-p4-v2-flask-sqlalchemy/pet_table.png)
+![new pet table](/assets/pet_table.png)
 
 #### Step 2: Seed the Database
 
@@ -232,7 +232,7 @@ python app.py
 In a browser, navigate to 127.0.0.1:5555. You should see this message in your
 browser:
 
-![h1 text "Welcome to the pet directory!" in Google Chrome](https://curriculum-content.s3.amazonaws.com/7159/python-p4-v2-flask-sqlalchemy/index_welcome_html.png)
+![h1 text "Welcome to the pet directory!" in Google Chrome](/assets/index_welcome_html.png)
 
 ### Step 4: Create Views
 
@@ -270,7 +270,7 @@ Run the application again and navigate to
 Faker, you will probably not see the same name and species, but your format
 should match below:
 
-![p text Information for pet with id 1](https://curriculum-content.s3.amazonaws.com/7159/python-p4-v2-flask-sqlalchemy/pet1.png)
+![p text Information for pet with id 1](/assets/pet1.png)
 
 Navigate now to 127.0.0.1:5555/pets/1000. You will see an error message that
 suggests something went wrong on your server. We're not tracking 1000 pets right
@@ -299,7 +299,7 @@ is quite minimal, but applications like Twitter and Facebook format them with
 descriptive messages and the same style and formatting of their website as a
 whole.
 
-![error message for pet with id 1000](https://curriculum-content.s3.amazonaws.com/7159/python-p4-v2-flask-sqlalchemy/pet1000.png)
+![error message for pet with id 1000](/assets/pet1000.png)
 
 Let's add another view to get all pets for a given species. We'll filter to get
 all rows that match the `species` route parameter, then loop through the query
@@ -325,8 +325,7 @@ while `species` after the equal sign refers to the route parameter.
 Let's test this new route (your result will differ). Navigate to
 127.0.0.1:5555/species/Dog.
 
-![query by species](https://curriculum-content.s3.amazonaws.com/7159/python-p4-v2-flask-sqlalchemy/species.png)
-
+![query by species](/assets/species.png)
 
 #### Step 5: Verify your Code
 
