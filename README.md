@@ -411,17 +411,6 @@ Best Practice documentation steps:
 * Remove unnecessary/commented out code
 * If needed, update git ignore to remove sensitive data
 
-## Summary
-
-You should now be able to use Flask-SQLAlchemy and Flask-Migrate to send and
-receive information between databases, web servers, and clients far away. These
-powerful tools require practice to get used to - our next lesson will give you
-the chance to write a full-stack Flask application on your own.
-
-If your application for this lesson still isn't working, don't worry! Refer to
-the solution code below and meet with your peers, instructors, and coaches to
-iron out any remaining wrinkles.
-
 ## Considerations
 
 When designing queries in a Flask-SQLAlchemy application, consider the following:
