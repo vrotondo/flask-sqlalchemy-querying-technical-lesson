@@ -15,7 +15,8 @@ In this lesson, you'll learn how to:
 * Serve that data through Flask views as HTML responses.
 * Handle situations where a user searches for a record that doesn’t exist.
 
-This is a major milestone - connecting your backend database logic to your frontend user interface!
+This is a major milestone - connecting your backend database logic to your 
+frontend user interface!
 
 ## Tools & Resources
 
@@ -62,9 +63,7 @@ $ tree
 │   └── versions
 │       └── 51b06098cc9e_initial_migration.py
 ├── models.py
-├── seed.py
-└── testing
-    └── codegrade_test.py
+└── seed.py
 ```
 
 The commands `flask db init` and `flask db migrate` have already been run, so
@@ -136,9 +135,7 @@ inside it:
 │   └── versions
 │       └── 51b06098cc9e_initial_migration.py
 ├── models.py
-├── seed.py
-└── testing
-    └── codegrade_test.py
+└── seed.py
 ```
 
 Confirm the database contains an empty `pets` table, either by using the Flask
