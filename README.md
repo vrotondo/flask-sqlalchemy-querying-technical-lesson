@@ -395,7 +395,7 @@ if __name__ == '__main__':
 
 ```bash
 git add .
-git commit -m "create pets table with some started data"
+git commit -m "final solution"
 git push
 ```
 
